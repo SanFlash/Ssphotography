@@ -1,0 +1,768 @@
+/* ==========================================
+   PHOTOGRAPHY+ STUDIO - ANIMATIONS & EFFECTS
+   Camera-themed animations with 60fps performance
+   ========================================== */
+
+/* ===================================================================
+   CSS KEYFRAME ANIMATIONS
+   =================================================================== */
+
+/* Shutter Loading Animation */
+@keyframes shutter-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes aperture-open {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes focus-ring {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes loading-text {
+  0%, 100% {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}
+
+/* Camera Flash Effect */
+@keyframes camera-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+/* Film Grain Animation */
+@keyframes film-grain {
+  0%, 100% {
+    opacity: 0.03;
+  }
+  50% {
+    opacity: 0.08;
+  }
+}
+
+/* Light Leak Effect */
+@keyframes light-leak {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) skewX(-15deg);
+  }
+}
+
+/* Camera Shake Effect */
+@keyframes camera-shake {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  10% {
+    transform: translate(-2px, -2px) rotate(-0.5deg);
+  }
+  20% {
+    transform: translate(2px, -2px) rotate(0.5deg);
+  }
+  30% {
+    transform: translate(-2px, 2px) rotate(0.5deg);
+  }
+  40% {
+    transform: translate(2px, 2px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translate(-1px, -1px) rotate(0deg);
+  }
+  60% {
+    transform: translate(1px, -1px) rotate(-0.5deg);
+  }
+  70% {
+    transform: translate(-1px, 1px) rotate(0.5deg);
+  }
+  80% {
+    transform: translate(1px, 1px) rotate(-0.5deg);
+  }
+  90% {
+    transform: translate(-1px, -1px) rotate(0deg);
+  }
+}
+
+/* Aperture Blade Animation */
+@keyframes aperture-blade {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(60deg) scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(120deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Focus Pull Animation */
+@keyframes focus-pull {
+  0% {
+    filter: blur(5px);
+    opacity: 0.7;
+  }
+  50% {
+    filter: blur(2px);
+    opacity: 0.9;
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+/* Bokeh Animation */
+@keyframes bokeh {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(20px, -15px) scale(1.1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-15px, 20px) scale(0.9);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(10px, 10px) scale(1.05);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+}
+
+/* Zoom In Animation */
+@keyframes zoom-in {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Fade In Up Animation */
+@keyframes fade-in-up {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slide In Left Animation */
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide In Right Animation */
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Glow Animation */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--color-accent-gold);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--color-accent-gold), 0 0 30px var(--color-accent-gold);
+  }
+}
+
+/* Glitch Effect */
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 var(--color-error), -2px 0 var(--color-info);
+    transform: translate(0);
+  }
+  20% {
+    text-shadow: 2px 0 var(--color-error), -2px 0 var(--color-info);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    text-shadow: -2px 0 var(--color-error), 2px 0 var(--color-info);
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    text-shadow: 2px 0 var(--color-error), -2px 0 var(--color-info);
+    transform: translate(2px, 2px);
+  }
+  80% {
+    text-shadow: -2px 0 var(--color-error), 2px 0 var(--color-info);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    text-shadow: 2px 0 var(--color-error), -2px 0 var(--color-info);
+    transform: translate(0);
+  }
+}
+
+/* ===================================================================
+   SHUTTER LOADER
+   =================================================================== */
+
+.shutter-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-primary-800) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-50);
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.shutter-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.shutter-loader .aperture {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: var(--spacing-8);
+}
+
+.shutter-loader .blade {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--color-accent-gold), var(--color-accent-copper));
+  clip-path: polygon(50% 50%, 0% 0%, 100% 0%);
+  transform-origin: 50% 50%;
+  animation: aperture-blade 2s ease-in-out infinite;
+}
+
+.shutter-loader .blade:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: 0s;
+}
+
+.shutter-loader .blade:nth-child(2) {
+  transform: rotate(60deg);
+  animation-delay: 0.1s;
+}
+
+.shutter-loader .blade:nth-child(3) {
+  transform: rotate(120deg);
+  animation-delay: 0.2s;
+}
+
+.shutter-loader .blade:nth-child(4) {
+  transform: rotate(180deg);
+  animation-delay: 0.3s;
+}
+
+.shutter-loader .blade:nth-child(5) {
+  transform: rotate(240deg);
+  animation-delay: 0.4s;
+}
+
+.shutter-loader .blade:nth-child(6) {
+  transform: rotate(300deg);
+  animation-delay: 0.5s;
+}
+
+.shutter-loader .focus-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border: 3px solid var(--color-accent-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: focus-ring 2s ease-in-out infinite;
+}
+
+.shutter-loader .loading-text {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-gold);
+  letter-spacing: var(--letter-spacing-wide);
+  animation: loading-text 2s ease-in-out infinite;
+}
+
+/* ===================================================================
+   CAMERA-THEMED ANIMATIONS
+   =================================================================== */
+
+/* Camera Flash Effect */
+.camera-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-white);
+  opacity: 0;
+  pointer-events: none;
+  z-index: var(--z-index-40);
+}
+
+.camera-flash.active {
+  animation: camera-flash 0.3s ease-out;
+}
+
+/* Film Grain Effect */
+.film-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 30px 30px, 70px 70px;
+  animation: film-grain 0.5s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Light Leak Effect */
+.light-leak {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(212, 175, 55, 0.1) 20%, 
+    rgba(212, 175, 55, 0.2) 40%, 
+    rgba(212, 175, 55, 0.1) 60%, 
+    transparent 100%);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+}
+
+.light-leak.active {
+  animation: light-leak 2s ease-out;
+}
+
+/* Camera Shake Effect */
+.camera-shake {
+  animation: camera-shake 0.5s ease-in-out;
+}
+
+/* Focus Ring Animation */
+.focus-ring-animated {
+  position: relative;
+}
+
+.focus-ring-animated::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid var(--color-accent-gold);
+  border-radius: inherit;
+  animation: focus-ring 2s ease-in-out infinite;
+}
+
+/* Bokeh Background Effect */
+.bokeh-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bokeh-element {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.6;
+  animation: bokeh 8s ease-in-out infinite;
+}
+
+.bokeh-element:nth-child(1) {
+  width: 200px;
+  height: 200px;
+  background: var(--color-accent-gold);
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.bokeh-element:nth-child(2) {
+  width: 150px;
+  height: 150px;
+  background: var(--color-accent-copper);
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.bokeh-element:nth-child(3) {
+  width: 100px;
+  height: 100px;
+  background: var(--color-accent-silver);
+  bottom: 30%;
+  left: 50%;
+  animation-delay: 4s;
+}
+
+/* ===================================================================
+   INTERACTIVE ANIMATIONS
+   =================================================================== */
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform var(--transition-duration-base) var(--transition-timing-in-out),
+              box-shadow var(--transition-duration-base) var(--transition-timing-in-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.hover-glow:hover {
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+.hover-pulse:hover {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+/* Click Effects */
+.click-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.3);
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Parallax Effect */
+.parallax-element {
+  transition: transform 0.1s ease-out;
+}
+
+/* Tilt Effect */
+.tilt-card {
+  transition: transform 0.1s ease-out;
+  transform-style: preserve-3d;
+}
+
+/* Magnetic Cursor Effect */
+.magnetic-cursor {
+  cursor: none;
+}
+
+.magnetic-cursor::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-accent-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+  transition: transform 0.1s ease-out;
+}
+
+/* ===================================================================
+   SCROLL ANIMATIONS
+   =================================================================== */
+
+/* Fade in on scroll */
+.fade-in-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide in from sides */
+.slide-in-left-scroll {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.slide-in-left-scroll.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-right-scroll {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.slide-in-right-scroll.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale in */
+.scale-in-scroll {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scale-in-scroll.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===================================================================
+   LOADING ANIMATIONS
+   =================================================================== */
+
+/* Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--color-gray-300);
+  border-top: 4px solid var(--color-accent-gold);
+  border-radius: 50%;
+  animation: shutter-spin 1s linear infinite;
+}
+
+/* Loading Dots */
+.loading-dots {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.loading-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent-gold);
+  border-radius: 50%;
+  animation: pulse 1.4s ease-in-out infinite both;
+}
+
+.loading-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--color-gray-200);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-gold), var(--color-accent-copper));
+  border-radius: var(--border-radius-full);
+  transition: width 0.3s ease;
+}
+
+/* ===================================================================
+   RESPONSIVE ANIMATIONS
+   =================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .shutter-loader .aperture,
+  .shutter-loader .focus-ring,
+  .shutter-loader .loading-text {
+    animation: none !important;
+  }
+  
+  .bokeh-element {
+    animation: none !important;
+  }
+}
+
+/* Disable animations on mobile for performance */
+@media (max-width: 768px) {
+  .bokeh-element {
+    animation: none;
+  }
+  
+  .film-grain {
+    animation: none;
+  }
+}
+
+/* ===================================================================
+   PERFORMANCE OPTIMIZATIONS
+   =================================================================== */
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Will-change property for critical animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-all {
+  will-change: transform, opacity;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent layout shift during animations */
+.prevent-layout-shift {
+  contain: layout style paint;
+}
+
+/* Optimize image rendering */
+.image-optimized {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}

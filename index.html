@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography+ Studio | Professional Photography Services</title>
+    <meta name="description" content="Professional photography services for weddings, portraits, and commercial projects. Capturing life's precious moments with artistic excellence.">
+    <meta name="keywords" content="professional photography, wedding photography, portrait photography, commercial photography">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Photography+ Studio">
+    <meta property="og:description" content="Professional photography services for all occasions">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://photographyplus.studio">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%232c3e50'/><circle cx='50' cy='50' r='20' fill='none' stroke='%23ecf0f1' stroke-width='3'/><circle cx='50' cy='50' r='8' fill='%23ecf0f1'/></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__logo">
+                <i class="fas fa-camera"></i>
+                <span>Photography+</span>
+            </div>
+            
+            <ul class="nav__menu">
+                <li><a href="#home" class="nav__link">Home</a></li>
+                <li><a href="#gallery" class="nav__link">Gallery</a></li>
+                <li><a href="#services" class="nav__link">Services</a></li>
+                <li><a href="#about" class="nav__link">About</a></li>
+                <li><a href="#contact" class="nav__link">Contact</a></li>
+            </ul>
+            
+            <button class="nav__toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero__content container">
+            <h1 class="hero__title">Capturing Life's<br><span class="hero__highlight">Precious Moments</span></h1>
+            <p class="hero__subtitle">Professional photography services for weddings, portraits, and commercial projects with artistic excellence and attention to detail.</p>
+            <div class="hero__actions">
+                <a href="#gallery" class="btn btn--primary">View Portfolio</a>
+                <a href="#contact" class="btn btn--outline">Book Session</a>
+            </div>
+        </div>
+        <div class="hero__image">
+            <img src="images/hero-photographer.jpg" alt="Professional photographer at work" loading="eager">
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title">Our Portfolio</h2>
+                <p class="section__subtitle">A showcase of our recent work across various photography genres</p>
+            </div>
+            
+            <div class="gallery__filter">
+                <button class="filter__btn active" data-filter="all">All</button>
+                <button class="filter__btn" data-filter="wedding">Weddings</button>
+                <button class="filter__btn" data-filter="portrait">Portraits</button>
+                <button class="filter__btn" data-filter="commercial">Commercial</button>
+                <button class="filter__btn" data-filter="event">Events</button>
+            </div>
+            
+            <div class="gallery__grid">
+                <div class="gallery__item" data-category="wedding">
+                    <img src="images/wedding-1.jpg" alt="Wedding photography" loading="lazy">
+                    <div class="gallery__overlay">
+                        <h3>Wedding Photography</h3>
+                        <p>Capturing your special day</p>
+                    </div>
+                </div>
+                
+                <div class="gallery__item" data-category="portrait">
+                    <img src="images/portrait-1.jpg" alt="Portrait photography" loading="lazy">
+                    <div class="gallery__overlay">
+                        <h3>Portrait Sessions</h3>
+                        <p>Professional headshots and family portraits</p>
+                    </div>
+                </div>
+                
+                <div class="gallery__item" data-category="commercial">
+                    <img src="images/commercial-1.jpg" alt="Commercial photography" loading="lazy">
+                    <div class="gallery__overlay">
+                        <h3>Commercial Work</h3>
+                        <p>Product and brand photography</p>
+                    </div>
+                </div>
+                
+                <div class="gallery__item" data-category="event">
+                    <img src="images/event-1.jpg" alt="Event photography" loading="lazy">
+                    <div class="gallery__overlay">
+                        <h3>Event Coverage</h3>
+                        <p>Corporate and social events</p>
+                    </div>
+                </div>
+                
+                <div class="gallery__item" data-category="wedding">
+                    <img src="images/wedding-2.jpg" alt="Wedding ceremony" loading="lazy">
+                    <div class="gallery__overlay">
+                        <h3>Ceremony Moments</h3>
+                        <p>Emotional wedding highlights</p>
+                    </div>
+                </div>
+                
+                <div class="gallery__item" data-category="portrait">
+                    <img src="images/portrait-2.jpg" alt="Family portrait" loading="lazy">
+                    <div class="gallery__overlay">
+                        <h3>Family Portraits</h3>
+                        <p>Creating lasting memories</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title">Our Services</h2>
+                <p class="section__subtitle">Professional photography services tailored to your needs</p>
+            </div>
+            
+            <div class="services__grid">
+                <div class="service__card">
+                    <div class="service__icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Wedding Photography</h3>
+                    <p>Complete wedding day coverage from preparation to reception, capturing every precious moment.</p>
+                    <ul class="service__features">
+                        <li>Full day coverage</li>
+                        <li>Engagement sessions</li>
+                        <li>Professional editing</li>
+                        <li>Online gallery</li>
+                    </ul>
+                    <div class="service__price">Starting at $2,500</div>
+                </div>
+                
+                <div class="service__card">
+                    <div class="service__icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Portrait Photography</h3>
+                    <p>Professional headshots, family portraits, and individual sessions with artistic flair.</p>
+                    <ul class="service__features">
+                        <li>Studio or location</li>
+                        <li>Professional lighting</li>
+                        <li>Wardrobe consultation</li>
+                        <li>Digital gallery</li>
+                    </ul>
+                    <div class="service__price">Starting at $350</div>
+                </div>
+                
+                <div class="service__card">
+                    <div class="service__icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Commercial Photography</h3>
+                    <p>High-quality product photography and brand imagery for your business needs.</p>
+                    <ul class="service__features">
+                        <li>Product photography</li>
+                        <li>Corporate headshots</li>
+                        <li>Brand imagery</li>
+                        <li>Marketing materials</li>
+                    </ul>
+                    <div class="service__price">Starting at $500</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about__content">
+                <div class="about__text">
+                    <h2 class="section__title">About Photography+</h2>
+                    <p class="about__description">With over 10 years of experience in professional photography, we specialize in capturing life's most precious moments with artistic excellence and technical precision.</p>
+                    
+                    <div class="about__stats">
+                        <div class="stat">
+                            <div class="stat__number">500+</div>
+                            <div class="stat__label">Happy Clients</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat__number">1000+</div>
+                            <div class="stat__label">Photos Taken</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat__number">50+</div>
+                            <div class="stat__label">Awards Won</div>
+                        </div>
+                    </div>
+                    
+                    <p class="about__bio">Our approach combines technical expertise with artistic vision to create timeless images that tell your unique story. Every session is tailored to reflect your personality and style.</p>
+                </div>
+                
+                <div class="about__image">
+                    <img src="images/photographer-portrait.jpg" alt="Professional photographer" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title">Get In Touch</h2>
+                <p class="section__subtitle">Ready to capture your special moments? Let's discuss your photography needs.</p>
+            </div>
+            
+            <div class="contact__content">
+                <div class="contact__info">
+                    <div class="contact__item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact__item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@photographyplus.studio</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact__item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>New York, NY 10001</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact__form" id="contactForm">
+                    <div class="form__group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    
+                    <div class="form__group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    
+                    <div class="form__group">
+                        <select id="service" name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="wedding">Wedding Photography</option>
+                            <option value="portrait">Portrait Photography</option>
+                            <option value="commercial">Commercial Photography</option>
+                            <option value="event">Event Photography</option>
+                        </select>
+                        <label for="service">Service Type</label>
+                    </div>
+                    
+                    <div class="form__group">
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn--primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <div class="nav__logo">
+                        <i class="fas fa-camera"></i>
+                        <span>Photography+</span>
+                    </div>
+                    <p>Capturing life's precious moments with professional excellence.</p>
+                </div>
+                
+                <div class="footer__links">
+                    <div class="footer__section">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#services">Wedding Photography</a></li>
+                            <li><a href="#services">Portrait Photography</a></li>
+                            <li><a href="#services">Commercial Photography</a></li>
+                            <li><a href="#services">Event Photography</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#gallery">Portfolio</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="admin.html">Admin</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__section">
+                        <h4>Follow Us</h4>
+                        <div class="social__links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2024 Photography+ Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,590 @@
+/* ==========================================
+   PARTICLE SYSTEM STYLES
+   Advanced particle effects and animations
+   ========================================== */
+
+/* ===================================================================
+   PARTICLE CONTAINER BASE STYLES
+   =================================================================== */
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particles-js-canvas-el {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ===================================================================
+   HERO PARTICLE STYLES
+   =================================================================== */
+
+#particles-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.hero-particles .particles-js-canvas-el {
+  background: radial-gradient(circle at center, 
+    rgba(0, 212, 255, 0.1) 0%, 
+    transparent 70%);
+}
+
+/* ===================================================================
+   GALLERY PARTICLE STYLES
+   =================================================================== */
+
+#gallery-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.gallery-particles .particles-js-canvas-el {
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(255, 0, 110, 0.05) 0%, 
+    transparent 50%),
+    radial-gradient(circle at 70% 70%, 
+    rgba(131, 56, 236, 0.05) 0%, 
+    transparent 50%);
+}
+
+/* ===================================================================
+   CUSTOM PARTICLE EFFECTS
+   =================================================================== */
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.particle-small {
+  width: 2px;
+  height: 2px;
+  background: var(--quantum-primary);
+  box-shadow: 0 0 6px var(--quantum-primary);
+  animation: particle-float-small 8s linear infinite;
+}
+
+.particle-medium {
+  width: 4px;
+  height: 4px;
+  background: var(--quantum-secondary);
+  box-shadow: 0 0 10px var(--quantum-secondary);
+  animation: particle-float-medium 12s linear infinite;
+}
+
+.particle-large {
+  width: 6px;
+  height: 6px;
+  background: var(--quantum-tertiary);
+  box-shadow: 0 0 14px var(--quantum-tertiary);
+  animation: particle-float-large 16s linear infinite;
+}
+
+.particle-glow {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, var(--quantum-accent) 0%, transparent 70%);
+  box-shadow: 0 0 20px var(--quantum-accent);
+  animation: particle-glow-float 10s linear infinite;
+}
+
+.particle-sparkle {
+  width: 3px;
+  height: 3px;
+  background: var(--quantum-warning);
+  box-shadow: 0 0 8px var(--quantum-warning);
+  animation: particle-sparkle-float 6s linear infinite;
+}
+
+/* ===================================================================
+   PARTICLE ANIMATIONS
+   =================================================================== */
+
+@keyframes particle-float-small {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(20px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-float-medium {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(-30px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-float-large {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(40px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-glow-float {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    transform: translateY(-100vh) translateX(-20px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-sparkle-float {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(25px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ===================================================================
+   INTERACTIVE PARTICLE EFFECTS
+   =================================================================== */
+
+.particle-interactive {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.particle-interactive:hover {
+  transform: scale(2) !important;
+  box-shadow: 0 0 30px currentColor !important;
+}
+
+.particle-burst {
+  animation: particle-burst 0.6s ease-out;
+}
+
+@keyframes particle-burst {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.particle-trail {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--quantum-accent);
+  border-radius: 50%;
+  animation: particle-trail 1s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes particle-trail {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* ===================================================================
+   QUANTUM PARTICLE FIELD
+   =================================================================== */
+
+.quantum-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.quantum-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: quantum-float 20s linear infinite;
+  will-change: transform, opacity;
+}
+
+.quantum-particle:nth-child(1) {
+  width: 3px;
+  height: 3px;
+  background: var(--quantum-primary);
+  box-shadow: 0 0 10px var(--quantum-primary);
+  animation-duration: 15s;
+  animation-delay: 0s;
+}
+
+.quantum-particle:nth-child(2) {
+  width: 5px;
+  height: 5px;
+  background: var(--quantum-secondary);
+  box-shadow: 0 0 15px var(--quantum-secondary);
+  animation-duration: 20s;
+  animation-delay: -5s;
+}
+
+.quantum-particle:nth-child(3) {
+  width: 2px;
+  height: 2px;
+  background: var(--quantum-tertiary);
+  box-shadow: 0 0 8px var(--quantum-tertiary);
+  animation-duration: 12s;
+  animation-delay: -2s;
+}
+
+.quantum-particle:nth-child(4) {
+  width: 4px;
+  height: 4px;
+  background: var(--quantum-accent);
+  box-shadow: 0 0 12px var(--quantum-accent);
+  animation-duration: 18s;
+  animation-delay: -8s;
+}
+
+@keyframes quantum-float {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(calc(var(--random-x) * 50px)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ===================================================================
+   PARTICLE CANVAS EFFECTS
+   =================================================================== */
+
+.particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.canvas-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.canvas-particle-small {
+  width: 1px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+}
+
+.canvas-particle-medium {
+  width: 2px;
+  height: 2px;
+  background: rgba(0, 212, 255, 0.8);
+  box-shadow: 0 0 6px rgba(0, 212, 255, 1);
+}
+
+.canvas-particle-large {
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 0, 110, 0.8);
+  box-shadow: 0 0 9px rgba(255, 0, 110, 1);
+}
+
+/* ===================================================================
+   PARTICLE SYSTEM CONTROLS
+   =================================================================== */
+
+.particle-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.particle-toggle {
+  width: 50px;
+  height: 50px;
+  background: var(--glass-bg);
+  border: 2px solid var(--glass-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--quantum-primary);
+  backdrop-filter: var(--glass-blur);
+}
+
+.particle-toggle:hover {
+  background: var(--quantum-primary);
+  color: #000;
+  border-color: var(--quantum-primary);
+  box-shadow: var(--quantum-glow);
+  transform: scale(1.1);
+}
+
+.particle-toggle.active {
+  background: var(--quantum-secondary);
+  color: #fff;
+  border-color: var(--quantum-secondary);
+  animation: particle-toggle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes particle-toggle-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 110, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(255, 0, 110, 0);
+  }
+}
+
+/* ===================================================================
+   PARTICLE SYSTEM STATUS
+   =================================================================== */
+
+.particle-status {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 12px;
+  color: var(--quantum-primary);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.particle-status.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.particle-count {
+  font-weight: bold;
+  color: var(--quantum-accent);
+}
+
+.particle-fps {
+  color: var(--quantum-warning);
+  margin-left: 10px;
+}
+
+/* ===================================================================
+   PARTICLE SYSTEM RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 768px) {
+  .particle-controls {
+    bottom: 10px;
+    right: 10px;
+    flex-direction: row;
+  }
+  
+  .particle-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+  
+  .particle-status {
+    top: 10px;
+    right: 10px;
+    font-size: 10px;
+    padding: 8px 12px;
+  }
+  
+  .particle-small {
+    width: 1px;
+    height: 1px;
+  }
+  
+  .particle-medium {
+    width: 2px;
+    height: 2px;
+  }
+  
+  .particle-large {
+    width: 3px;
+    height: 3px;
+  }
+  
+  .particle-glow {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .particle-sparkle {
+    width: 2px;
+    height: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle {
+    animation: none !important;
+  }
+  
+  .particle-controls {
+    display: none;
+  }
+  
+  .particle-status {
+    display: none;
+  }
+}
+
+/* ===================================================================
+   PARTICLE SYSTEM PERFORMANCE
+   =================================================================== */
+
+.particle-performance-mode {
+  animation-duration: 30s !important;
+  animation-timing-function: linear !important;
+}
+
+.particle-low-quality {
+  filter: blur(0) !important;
+  box-shadow: none !important;
+}
+
+.particle-hidden {
+  display: none !important;
+}
+
+/* GPU acceleration for particles */
+.particle,
+.quantum-particle,
+.canvas-particle {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* ===================================================================
+   PARTICLE SYSTEM THEMES
+   =================================================================== */
+
+.particle-theme-calm {
+  --particle-color-1: #4facfe;
+  --particle-color-2: #00f2fe;
+  --particle-color-3: #667eea;
+  --particle-color-4: #764ba2;
+  --particle-color-5: #f093fb;
+}
+
+.particle-theme-energy {
+  --particle-color-1: #ff006e;
+  --particle-color-2: #8338ec;
+  --particle-color-3: #06ffa5;
+  --particle-color-4: #ffd60a;
+  --particle-color-5: #ff4757;
+}
+
+.particle-theme-nature {
+  --particle-color-1: #43e97b;
+  --particle-color-2: #38f9d7;
+  --particle-color-3: #11998e;
+  --particle-color-4: #38ef7d;
+  --particle-color-5: #41b883;
+}

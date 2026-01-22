@@ -1,0 +1,628 @@
+/* ==========================================
+   QUANTUM ADMIN ANALYTICS STYLES
+   Advanced analytics dashboard with real-time charts
+   ========================================== */
+
+/* ===================================================================
+   ANALYTICS VARIABLES
+   =================================================================== */
+
+:root {
+  /* Chart Colors */
+  --chart-primary: #6366f1;
+  --chart-secondary: #8b5cf6;
+  --chart-accent: #06b6d4;
+  --chart-success: #10b981;
+  --chart-warning: #f59e0b;
+  --chart-error: #ef4444;
+  --chart-info: #3b82f6;
+  
+  /* Chart Gradients */
+  --chart-gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --chart-gradient-2: linear-gradient(135deg, #06b6d4 0%, #6366f1 100%);
+  --chart-gradient-3: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+}
+
+/* ===================================================================
+   ANALYTICS CARDS
+   =================================================================== */
+
+.analytics-card {
+  background: var(--admin-glass);
+  backdrop-filter: var(--admin-glass-blur);
+  border: 1px solid var(--admin-glass-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.analytics-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.analytics-card:hover::before {
+  opacity: 1;
+}
+
+.analytics-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.analytics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.analytics-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--admin-text);
+  margin: 0;
+}
+
+.analytics-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.analytics-btn {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text-secondary);
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.analytics-btn:hover {
+  color: var(--admin-text);
+  background: var(--admin-surface-hover);
+  border-color: var(--admin-primary);
+}
+
+.analytics-btn.active {
+  background: var(--admin-primary);
+  color: white;
+  border-color: var(--admin-primary);
+}
+
+/* ===================================================================
+   REAL-TIME METRICS
+   =================================================================== */
+
+.realtime-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.metric-item {
+  background: var(--admin-glass);
+  backdrop-filter: var(--admin-glass-blur);
+  border: 1px solid var(--admin-glass-border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-item::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(99, 102, 241, 0.3) 90deg,
+    transparent 180deg,
+    rgba(139, 92, 246, 0.3) 270deg,
+    transparent 360deg
+  );
+  animation: metric-rotate 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.metric-item:hover::before {
+  opacity: 1;
+}
+
+@keyframes metric-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--admin-text);
+  margin-bottom: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--admin-text-secondary);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-change.positive {
+  color: var(--chart-success);
+}
+
+.metric-change.negative {
+  color: var(--chart-error);
+}
+
+/* ===================================================================
+   CHART CONTAINERS
+   =================================================================== */
+
+.chart-container {
+  position: relative;
+  height: 300px;
+  margin: 1rem 0;
+}
+
+.chart-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--admin-text-secondary);
+}
+
+.chart-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* ===================================================================
+   SPARKLINE CHARTS
+   =================================================================== */
+
+.sparkline-container {
+  position: relative;
+  height: 40px;
+  width: 60px;
+}
+
+.sparkline-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.sparkline-positive {
+  stroke: var(--chart-success);
+  fill: url(#sparkline-gradient-positive);
+}
+
+.sparkline-negative {
+  stroke: var(--chart-error);
+  fill: url(#sparkline-gradient-negative);
+}
+
+/* ===================================================================
+   ADVANCED CHART STYLES
+   =================================================================== */
+
+.advanced-chart {
+  background: var(--admin-glass);
+  backdrop-filter: var(--admin-glass-blur);
+  border: 1px solid var(--admin-glass-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.chart-tile {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.chart-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--admin-primary);
+}
+
+.chart-header-advanced {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.chart-title-advanced {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--admin-text);
+  margin: 0;
+}
+
+.chart-subtitle {
+  font-size: 0.875rem;
+  color: var(--admin-text-secondary);
+  margin: 0;
+}
+
+/* ===================================================================
+   HEATMAP ANALYTICS
+   =================================================================== */
+
+.heatmap-container {
+  background: var(--admin-glass);
+  backdrop-filter: var(--admin-glass-blur);
+  border: 1px solid var(--admin-glass-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 2px;
+  margin: 1rem 0;
+}
+
+.heatmap-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.heatmap-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--admin-text-secondary);
+}
+
+.heatmap-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+/* ===================================================================
+   FUNNEL ANALYTICS
+   =================================================================== */
+
+.funnel-container {
+  background: var(--admin-glass);
+  backdrop-filter: var(--admin-glass-blur);
+  border: 1px solid var(--admin-glass-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.funnel-stage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.funnel-stage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--chart-gradient-1);
+  opacity: 0.1;
+  transition: width 0.5s ease;
+}
+
+.funnel-stage:hover::before {
+  opacity: 0.2;
+}
+
+.funnel-stage-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.funnel-stage-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--admin-text);
+  margin: 0;
+}
+
+.funnel-stage-count {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--admin-primary);
+}
+
+.funnel-stage-rate {
+  font-size: 0.75rem;
+  color: var(--admin-text-secondary);
+  font-weight: 500;
+}
+
+.funnel-conversion {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--admin-success);
+  font-weight: 600;
+}
+
+/* ===================================================================
+   REAL-TIME UPDATES
+   =================================================================== */
+
+.realtime-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--chart-success);
+}
+
+.realtime-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--chart-success);
+  border-radius: 50%;
+  animation: realtime-pulse 2s ease-in-out infinite;
+}
+
+@keyframes realtime-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ===================================================================
+   DATA TABLES
+   =================================================================== */
+
+.data-table {
+  background: var(--admin-glass);
+  backdrop-filter: var(--admin-glass-blur);
+  border: 1px solid var(--admin-glass-border);
+  border-radius: 1rem;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.table-header {
+  background: var(--admin-surface);
+  border-bottom: 1px solid var(--admin-border);
+  padding: 1rem 1.5rem;
+}
+
+.table-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--admin-text);
+  margin: 0;
+}
+
+.table-content {
+  overflow-x: auto;
+}
+
+.analytics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.analytics-table th,
+.analytics-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.analytics-table th {
+  background: var(--admin-surface);
+  color: var(--admin-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.analytics-table td {
+  color: var(--admin-text);
+  font-size: 0.875rem;
+}
+
+.analytics-table tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+/* ===================================================================
+   MOBILE RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 768px) {
+  .analytics-grid {
+    gap: 1rem;
+  }
+  
+  .metric-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-container {
+    height: 250px;
+  }
+  
+  .heatmap-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  
+  .funnel-stage {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .analytics-table {
+    font-size: 0.75rem;
+  }
+  
+  .analytics-table th,
+  .analytics-table td {
+    padding: 0.5rem;
+  }
+}
+
+/* ===================================================================
+   PERFORMANCE OPTIMIZATIONS
+   =================================================================== */
+
+.chart-performance-mode {
+  animation-duration: 30s !important;
+  transition-duration: 0.1s !important;
+}
+
+.chart-low-quality {
+  filter: blur(0) !important;
+  box-shadow: none !important;
+}
+
+/* GPU acceleration for smooth animations */
+.chart-canvas,
+.sparkline-canvas,
+.heatmap-cell,
+.funnel-stage {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* ===================================================================
+   ACCESSIBILITY
+   =================================================================== */
+
+.chart-aria-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .analytics-card,
+  .chart-card,
+  .heatmap-container,
+  .funnel-container,
+  .data-table {
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .metric-item::before {
+    opacity: 0.3;
+  }
+}
