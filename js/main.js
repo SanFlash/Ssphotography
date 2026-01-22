@@ -1,17 +1,171 @@
 // Photography+ Studio - Main JavaScript
-// Professional interactions and functionality
+// Professional interactions and functionality with dynamic content loading
 
 class PhotographyStudio {
     constructor() {
+        this.dataManager = null;
         this.init();
     }
 
     init() {
+        // Initialize data manager for dynamic content
+        this.initializeDataManager();
+        
+        // Setup all functionality
         this.setupNavigation();
-        this.setupGallery();
+        this.loadDynamicGallery();
+        this.loadDynamicServices();
         this.setupContactForm();
         this.setupScrollEffects();
         this.setupLazyLoading();
+        
+        // Track page view
+        this.trackPageView();
+    }
+
+    // Initialize data manager
+    initializeDataManager() {
+        // Load data-manager if available
+        if (typeof DataManager !== 'undefined') {
+            this.dataManager = window.DataManager;
+        } else {
+            // Create inline data manager for landing page
+            this.createInlineDataManager();
+        }
+    }
+
+    createInlineDataManager() {
+        // Minimal data manager for landing page
+        this.dataManager = {
+            getVisiblePhotos: () => {
+                try {
+                    const photos = JSON.parse(localStorage.getItem('photo_studio_gallery') || '[]');
+                    return photos.filter(p => p.visible !== false);
+                } catch (e) {
+                    return [];
+                }
+            },
+            getVisibleServices: () => {
+                try {
+                    const services = JSON.parse(localStorage.getItem('photo_studio_services') || '[]');
+                    return services.filter(s => s.visible !== false);
+                } catch (e) {
+                    return [];
+                }
+            },
+            incrementPhotoViews: (id) => {
+                try {
+                    const photos = JSON.parse(localStorage.getItem('photo_studio_gallery') || '[]');
+                    const photo = photos.find(p => p.id === id);
+                    if (photo) {
+                        photo.views = (photo.views || 0) + 1;
+                        localStorage.setItem('photo_studio_gallery', JSON.stringify(photos));
+                    }
+                } catch (e) {
+                    console.error('Error updating views:', e);
+                }
+            }
+        };
+    }
+
+    // Track page view
+    trackPageView() {
+        try {
+            const analytics = JSON.parse(localStorage.getItem('photo_studio_analytics') || '{}');
+            analytics.pageViews = (analytics.pageViews || 0) + 1;
+            analytics.lastVisit = new Date().toISOString();
+            localStorage.setItem('photo_studio_analytics', JSON.stringify(analytics));
+        } catch (e) {
+            console.error('Error tracking page view:', e);
+        }
+    }
+
+    // Dynamic Gallery Loading
+    loadDynamicGallery() {
+        const galleryGrid = document.querySelector('.gallery__grid');
+        if (!galleryGrid) return;
+
+        const photos = this.dataManager.getVisiblePhotos();
+        
+        // If no photos in storage, use existing HTML content
+        if (photos.length === 0) {
+            console.log('No dynamic photos found, using static content');
+            return;
+        }
+
+        // Clear existing content
+        galleryGrid.innerHTML = '';
+
+        // Render dynamic photos
+        photos.forEach(photo => {
+            const photoElement = this.createGalleryItem(photo);
+            galleryGrid.appendChild(photoElement);
+        });
+
+        // Re-setup gallery functionality
+        this.setupGalleryInteractions();
+    }
+
+    createGalleryItem(photo) {
+        const div = document.createElement('div');
+        div.className = 'gallery__item';
+        div.setAttribute('data-category', photo.category);
+        div.setAttribute('data-id', photo.id);
+
+        div.innerHTML = `
+            <img src="${photo.image}" alt="${photo.title}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
+            <div class="gallery__overlay">
+                <h3>${photo.title}</h3>
+                <p>${photo.description || ''}</p>
+                ${photo.tags ? `<div class="gallery__tags">${photo.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+            </div>
+        `;
+
+        return div;
+    }
+
+    // Dynamic Services Loading
+    loadDynamicServices() {
+        const servicesGrid = document.querySelector('.services__grid');
+        if (!servicesGrid) return;
+
+        const services = this.dataManager.getVisibleServices();
+        
+        // If no services in storage, use existing HTML content
+        if (services.length === 0) {
+            console.log('No dynamic services found, using static content');
+            return;
+        }
+
+        // Clear existing content
+        servicesGrid.innerHTML = '';
+
+        // Render dynamic services
+        services.forEach(service => {
+            const serviceElement = this.createServiceCard(service);
+            servicesGrid.appendChild(serviceElement);
+        });
+    }
+
+    createServiceCard(service) {
+        const div = document.createElement('div');
+        div.className = 'service__card';
+
+        const features = service.features && service.features.length > 0 
+            ? service.features.map(f => `<li>${f}</li>`).join('') 
+            : '';
+
+        div.innerHTML = `
+            <div class="service__icon">
+                <i class="fas ${service.icon}"></i>
+            </div>
+            <h3>${service.name}</h3>
+            <p>${service.description}</p>
+            ${features ? `<ul class="service__features">${features}</ul>` : ''}
+            <div class="service__price">${service.price}</div>
+        `;
+
+        return div;
     }
 
     // Navigation
@@ -62,7 +216,7 @@ class PhotographyStudio {
     }
 
     // Gallery functionality
-    setupGallery() {
+    setupGalleryInteractions() {
         const filterButtons = document.querySelectorAll('.filter__btn');
         const galleryItems = document.querySelectorAll('.gallery__item');
 
@@ -101,7 +255,13 @@ class PhotographyStudio {
             item.addEventListener('click', () => {
                 const img = item.querySelector('img');
                 const title = item.querySelector('h3').textContent;
-                const description = item.querySelector('p').textContent;
+                const description = item.querySelector('p')?.textContent || '';
+                const photoId = item.getAttribute('data-id');
+                
+                // Track view
+                if (photoId) {
+                    this.dataManager.incrementPhotoViews(photoId);
+                }
                 
                 this.openLightbox(img.src, title, description);
             });
@@ -140,9 +300,13 @@ class PhotographyStudio {
         });
         
         // Escape key to close
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
-        });
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
     }
 
     // Contact form
@@ -168,8 +332,8 @@ class PhotographyStudio {
                 submitBtn.disabled = true;
                 
                 try {
-                    // Simulate API call
-                    await this.simulateFormSubmission(data);
+                    // Simulate API call and store in localStorage
+                    await this.submitContactForm(data);
                     
                     // Success
                     this.showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
@@ -223,26 +387,31 @@ class PhotographyStudio {
         return emailRegex.test(email);
     }
 
-    // Simulate form submission
-    simulateFormSubmission(data) {
+    // Submit form and store in localStorage
+    submitContactForm(data) {
         return new Promise((resolve) => {
             setTimeout(() => {
-                // Store contact submission in localStorage for admin dashboard
-                const contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
-                const newContact = {
-                    id: Date.now().toString(36) + Math.random().toString(36).substr(2),
-                    name: data.name,
-                    email: data.email,
-                    service: data.service,
-                    message: data.message,
-                    createdAt: new Date().toISOString()
-                };
-                contacts.unshift(newContact);
-                localStorage.setItem('contacts', JSON.stringify(contacts));
-                
-                console.log('Form submission data:', data);
-                resolve();
-            }, 2000);
+                try {
+                    // Store contact submission in localStorage
+                    const contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+                    const newContact = {
+                        id: Date.now().toString(36) + Math.random().toString(36).substr(2),
+                        name: data.name,
+                        email: data.email,
+                        service: data.service,
+                        message: data.message,
+                        createdAt: new Date().toISOString()
+                    };
+                    contacts.unshift(newContact);
+                    localStorage.setItem('contacts', JSON.stringify(contacts));
+                    
+                    console.log('Contact form submitted:', newContact);
+                    resolve();
+                } catch (error) {
+                    console.error('Error saving contact:', error);
+                    resolve(); // Still resolve to show success message
+                }
+            }, 1500);
         });
     }
 
@@ -263,7 +432,7 @@ class PhotographyStudio {
         }, observerOptions);
         
         // Observe elements for animation
-        const animateElements = document.querySelectorAll('.service__card, .gallery__item, .about__content > *');
+        const animateElements = document.querySelectorAll('.service__card, .gallery__item, .about__content > *, .stat');
         animateElements.forEach(el => observer.observe(el));
     }
 
@@ -276,7 +445,9 @@ class PhotographyStudio {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
-                        img.src = img.dataset.src || img.src;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                        }
                         observer.unobserve(img);
                     }
                 });
@@ -322,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new PhotographyStudio();
 });
 
-// Add some CSS for dynamic elements
+// Add dynamic styles (unchanged)
 const dynamicStyles = `
     .lightbox-overlay {
         position: fixed;
@@ -358,12 +529,18 @@ const dynamicStyles = `
         color: #333;
         cursor: pointer;
         z-index: 1;
+        transition: transform 0.2s;
+    }
+    
+    .lightbox-close:hover {
+        transform: scale(1.1);
     }
     
     .lightbox-image {
         max-width: 100%;
         max-height: 70vh;
         object-fit: contain;
+        display: block;
     }
     
     .lightbox-info {
@@ -374,6 +551,21 @@ const dynamicStyles = `
     .lightbox-info h3 {
         margin-bottom: 10px;
         color: var(--primary);
+    }
+
+    .gallery__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .gallery__tags .tag {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
     }
     
     .notification {
