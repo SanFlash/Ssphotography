@@ -67,7 +67,7 @@ class AuthenticationManager {
             loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Signing in...</span>';
 
             // Simulate processing delay
-            await this.delay(800);
+            await this.delay(400);
 
             // Verify credentials
             if (this.verifyCredentials(username, password)) {
